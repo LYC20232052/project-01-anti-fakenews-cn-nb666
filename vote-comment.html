@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>投票评价 - 真相守护者</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-shield-alt"></i>
+                <span>真相守护者</span>
+            </div>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link"><i class="fas fa-home"></i> 首页</a>
+                <a href="#" class="nav-link" onclick="history.back()"><i class="fas fa-arrow-left"></i> 返回</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="vote-header">
+            <h1><i class="fas fa-vote-yea"></i> 投票评价新闻</h1>
+            <p>您的判断将帮助他人识别真相</p>
+        </div>
+
+        <div class="vote-container">
+            <!-- 新闻概览 -->
+            <div class="news-preview" id="news-preview">
+                <!-- 新闻预览内容将通过JavaScript动态加载 -->
+            </div>
+
+            <!-- 投票表单 -->
+            <div class="vote-form-container">
+                <form id="vote-form" class="vote-form">
+                    <div class="vote-section">
+                        <h3><i class="fas fa-check-circle"></i> 您认为这条新闻是？</h3>
+                        <div class="vote-options">
+                            <label class="vote-option real-news">
+                                <input type="radio" name="vote" value="not-fake" required>
+                                <div class="option-content">
+                                    <i class="fas fa-check"></i>
+                                    <span>真实新闻</span>
+                                    <p>我认为这条新闻内容真实可信</p>
+                                </div>
+                            </label>
+                            <label class="vote-option fake-news">
+                                <input type="radio" name="vote" value="fake" required>
+                                <div class="option-content">
+                                    <i class="fas fa-times"></i>
+                                    <span>假新闻</span>
+                                    <p>我认为这条新闻存在虚假信息</p>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="comment-section">
+                        <h3><i class="fas fa-comment"></i> 说明您的理由（可选）</h3>
+                        <div class="form-group">
+                            <textarea id="comment-text" placeholder="请详细说明您认为这是真实新闻或假新闻的理由...（至少10个字符）" rows="5"></textarea>
+                            <div class="char-count">
+                                <span id="char-counter">0</span>/500
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="evidence-section">
+                        <h3><i class="fas fa-image"></i> 添加证据链接（可选）</h3>
+                        <div class="form-group">
+                            <input type="url" id="evidence-link" placeholder="https://example.com/evidence.jpg">
+                            <small>请提供可以支持您判断的图片或文章链接</small>
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="button" class="btn-secondary" onclick="history.back()">取消</button>
+                        <button type="submit" class="btn-primary">
+                            <i class="fas fa-paper-plane"></i> 提交评价
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- 当前投票结果 -->
+        <div class="current-results">
+            <h3><i class="fas fa-chart-bar"></i> 当前投票结果</h3>
+            <div class="results-grid">
+                <div class="result-item real-votes">
+                    <div class="result-label">
+                        <i class="fas fa-check"></i>
+                        <span>真实票数</span>
+                    </div>
+                    <div class="result-bar">
+                        <div class="bar-fill" id="real-bar"></div>
+                    </div>
+                    <div class="result-count" id="real-count">0</div>
+                </div>
+                <div class="result-item fake-votes">
+                    <div class="result-label">
+                        <i class="fas fa-times"></i>
+                        <span>假新闻票数</span>
+                    </div>
+                    <div class="result-bar">
+                        <div class="bar-fill" id="fake-bar"></div>
+                    </div>
+                    <div class="result-count" id="fake-count">0</div>
+                </div>
+            </div>
+            <div class="result-status">
+                <span id="current-status">状态：投票中</span>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2024 真相守护者 - 社交反假新闻系统</p>
+        </div>
+    </footer>
+
+    <script src="js/utils.js"></script>
+    <script src="js/vote-comment.js"></script>
+</body>
+</html>

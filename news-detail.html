@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>新闻详情 - 真相守护者</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-shield-alt"></i>
+                <span>真相守护者</span>
+            </div>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link"><i class="fas fa-home"></i> 首页</a>
+                <a href="#" class="nav-link" onclick="history.back()"><i class="fas fa-arrow-left"></i> 返回</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div id="news-detail" class="news-detail">
+            <!-- 新闻详情内容将通过JavaScript动态加载 -->
+        </div>
+
+        <div class="detail-actions">
+            <a href="#" class="btn-primary" id="vote-link">
+                <i class="fas fa-vote-yea"></i> 投票评价此新闻
+            </a>
+        </div>
+
+        <!-- 评论部分 -->
+        <div class="comments-section">
+            <div class="section-header">
+                <h3><i class="fas fa-comments"></i> 用户评论</h3>
+                <div class="comments-stats">
+                    <span id="comments-count">0 条评论</span>
+                </div>
+            </div>
+            
+            <div id="comments-list" class="comments-list">
+                <!-- 评论将通过JavaScript动态加载 -->
+            </div>
+            
+            <div id="comments-pagination" class="pagination-container">
+                <!-- 评论分页将通过JavaScript动态生成 -->
+            </div>
+            
+            <div id="no-comments" class="empty-state">
+                <i class="fas fa-comment-slash"></i>
+                <h3>暂无评论</h3>
+                <p>成为第一个评论此新闻的人吧！</p>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2024 真相守护者 - 社交反假新闻系统</p>
+        </div>
+    </footer>
+
+    <script src="js/utils.js"></script>
+    <script src="js/news-detail.js"></script>
+</body>
+</html>

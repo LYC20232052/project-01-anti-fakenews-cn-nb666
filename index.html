@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>真相守护者 - 社交反假新闻系统</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-shield-alt"></i>
+                <span>真相守护者</span>
+            </div>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link active"><i class="fas fa-home"></i> 首页</a>
+                <a href="#" class="nav-link" id="add-news-btn"><i class="fas fa-plus"></i> 提交新闻</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主要内容区 -->
+    <div class="container">
+        <!-- 头部横幅 -->
+        <header class="hero-section">
+            <div class="hero-content">
+                <h1 class="hero-title">共同守护真相</h1>
+                <p class="hero-subtitle">用群体智慧识别假新闻，让真相更清晰</p>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <span class="stat-number" id="total-news">0</span>
+                        <span class="stat-label">总新闻数</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" id="verified-news">0</span>
+                        <span class="stat-label">已验证</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" id="fake-news">0</span>
+                        <span class="stat-label">假新闻</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- 控制面板 -->
+        <div class="control-panel">
+            <div class="filter-section">
+                <div class="filter-group">
+                    <label for="filter"><i class="fas fa-filter"></i> 新闻类型:</label>
+                    <select id="filter" class="filter-select">
+                        <option value="all">全部新闻</option>
+                        <option value="not-fake">✅ 已验证新闻</option>
+                        <option value="fake">❌ 假新闻</option>
+                        <option value="pending">⏳ 投票中</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="pageSize"><i class="fas fa-list"></i> 每页显示:</label>
+                    <select id="pageSize" class="filter-select">
+                        <option value="5">5 条</option>
+                        <option value="10" selected>10 条</option>
+                        <option value="20">20 条</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="sortBy"><i class="fas fa-sort"></i> 排序方式:</label>
+                    <select id="sortBy" class="filter-select">
+                        <option value="newest">最新优先</option>
+                        <option value="oldest">最旧优先</option>
+                        <option value="most-votes">投票最多</option>
+                    </select>
+                </div>
+            </div>
+            <div class="search-section">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="searchInput" placeholder="搜索新闻主题或内容...">
+                </div>
+            </div>
+        </div>
+
+        <!-- 新闻列表 -->
+        <div class="news-container">
+            <div id="news-list" class="news-grid">
+                <!-- 新闻项将通过JavaScript动态加载 -->
+            </div>
+            
+            <!-- 加载状态 -->
+            <div id="loading" class="loading">
+                <i class="fas fa-spinner fa-spin"></i>
+                <span>加载新闻中...</span>
+            </div>
+            
+            <!-- 空状态 -->
+            <div id="empty-state" class="empty-state hidden">
+                <i class="fas fa-newspaper"></i>
+                <h3>暂无新闻</h3>
+                <p>还没有新闻被提交，点击上方按钮添加第一条新闻吧！</p>
+            </div>
+        </div>
+
+        <!-- 分页控件 -->
+        <div class="pagination-container">
+            <div class="pagination" id="pagination">
+                <!-- 分页按钮将通过JavaScript动态生成 -->
+            </div>
+        </div>
+    </div>
+
+    <!-- 提交新闻模态框 -->
+    <div id="news-modal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-plus"></i> 提交新闻</h3>
+                <button class="close-btn" id="close-modal">&times;</button>
+            </div>
+            <form id="news-form" class="modal-form">
+                <div class="form-group">
+                    <label for="news-topic">新闻主题 *</label>
+                    <input type="text" id="news-topic" required placeholder="请输入新闻主题">
+                </div>
+                <div class="form-group">
+                    <label for="news-short-detail">简短描述 *</label>
+                    <textarea id="news-short-detail" required placeholder="请输入新闻的简短描述" rows="3"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="news-full-detail">详细内容 *</label>
+                    <textarea id="news-full-detail" required placeholder="请输入新闻的详细内容" rows="5"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="news-reporter">记者/来源 *</label>
+                    <input type="text" id="news-reporter" required placeholder="请输入记者姓名或新闻来源">
+                </div>
+                <div class="form-group">
+                    <label for="news-image">图片链接</label>
+                    <input type="url" id="news-image" placeholder="https://example.com/image.jpg">
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn-secondary" id="cancel-news">取消</button>
+                    <button type="submit" class="btn-primary">提交新闻</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2024 真相守护者 - 社交反假新闻系统</p>
+            <p>用智慧守护真相，让谣言无处遁形</p>
+        </div>
+    </footer>
+
+    <script src="js/utils.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
