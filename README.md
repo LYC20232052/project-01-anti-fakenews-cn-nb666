@@ -17,3 +17,6 @@ This is a modern responsive website developed by group NB666. The website featur
 
 ## Website
 - project-01-anti-fakenews-cn-nb666.vercel.app
+
+## Video Website
+- https://www.douyin.com/user/self?from_tab_name=main&modal_id=7570745542902768613
